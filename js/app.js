@@ -162,8 +162,8 @@ function allMatchedCards() {
 
 		// Get the <span> element that closes the modal
 		let span = document.getElementsByClassName("close")[0];
-		let numberOfMovesContent = document.querySelector("numofMoves");
-		numberOfMovesContent.textContent = moves;
+		// let numberOfMovesContent = document.querySelector("numofMoves");
+		// numberOfMovesContent.textContent = moves;
 		modal.style.display = "block";
 
 
