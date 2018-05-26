@@ -21,11 +21,15 @@ const cardSymbols = ["diamond",
 	"bomb"
 ];
 
+/*Selectors*/
 let deck = document.querySelector(".deck");
 let cards = document.querySelector(".deck").children;
-let openCards = []; //Hold open Cards
-let clickedCards=[];//To count the moves
-// numberOfMoves.textContent='0';
+let openCards = []; // Array to hold open Cards
+const numberOfMoves = document.querySelector(".moves");
+
+/*Variables*/
+let moves = 0;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -34,16 +38,13 @@ let clickedCards=[];//To count the moves
  */
 
 
-const numberOfMoves = document.querySelector(".moves");
 startGame();
-
 
 function startGame() {
 	let shuffleCards = shuffle(cardSymbols);
-	// deck.removeContent();
 	numberOfMoves.textContent = '0';
 	AddCardSymbols();
-
+	moves = 0;
 }
 
 
@@ -97,7 +98,7 @@ function AddCardSymbols() {
 //Spread Operator
 let deckOfcards = [...cards]; //Contains list of card Symbols
 // /*Flip Cards Function
-
+// function flipCard(){
 for (let card of deckOfcards) {
 	card.addEventListener('click', function (e) {
 
@@ -105,30 +106,36 @@ for (let card of deckOfcards) {
 			openCards.push(card);
 			card.classList.add('open', 'show');
 			console.log(openCards.length);
-			clickedCards.push(card);
-			numberOfMoves.textContent=clickedCards.length;
-				
+			// clickedCards.push(card);
+			// numberOfMoves.textContent=clickedCards.length;
+
 			if (openCards.length == 2) {
 				//hide
-				
+
 				if (openCards[0].dataset.card === openCards[1].dataset.card) {
-					openCards[0].classList.add('open', 'show', 'match');
-					openCards[1].classList.add('open', 'show', 'match');
+
+					openCards[0].classList.add('match');
+					openCards[1].classList.add('match');
+					openCards[0].classList.remove('open', 'show');
+					openCards[1].classList.remove('open', 'show');
+
 					// openCards[2].classList.remove('open', 'show','match');
 
 					console.log("this is a match");
 					// console.log(openCards[0].dataset.card);
 					// console.log(openCards[1].dataset.card);
 					openCards = [];
+					allMatchedCards();
 				} else {
-				
+					//Mike Wales FEND P3: Memory Game with Mike Wales
 					setTimeout(function () {
 						openCards.forEach(function (card) {
 							card.classList.remove('open', 'show');
 						});
 						openCards = [];
 					}, 1000);
-
+					moves += 1; //Counting moves
+					numberOfMoves.textContent = moves;
 				}
 
 			}
@@ -141,31 +148,45 @@ for (let card of deckOfcards) {
 	});
 }
 
+// }
+
+
 /*Match two cards(Verify if the two cards that were pushed into openCards Array are a match*/
-// function matchedCards(card){
 
-// if (card[0].children===card[1].children){
-// card[0].classList.add('open', 'show');
-// card[1].classList.add('open', 'show');
+function allMatchedCards() {
+	let matchCard = deck.getElementsByClassName("match");
+	if (matchCard.length == 16) {
+		// Get the modal
+		/*Courtesy of W3School*/
+		let modal = document.getElementById('congratulations');
 
-// }else{
-// card[0].classList.remove('open', 'show');
-// card[1].classList.remove('open', 'show');
+		// Get the <span> element that closes the modal
+		let span = document.getElementsByClassName("close")[0];
+		let numberOfMovesContent = document.querySelector("numofMoves");
+		numberOfMovesContent.textContent = moves;
+		modal.style.display = "block";
 
-// }
 
-// }
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function () {
+			modal.style.display = "none";
+			startGame();
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+				startGame();
+			}
+		}
+
+
+	}
+}
 
 
 // *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-
-
-/*
-	Counting Moves Function
-*/
-
-
-// openCards
 
 
 /*
@@ -176,10 +197,10 @@ const reset = document.querySelector(".restart");
 
 reset.addEventListener('click', function (e) {
 	for (let card of deckOfcards) {
-		const resetDeck = card.classList.remove("open", "show");
+		card.classList.remove("open", "show");
 		// console.log (card);
 	};
 
-	startGame();
+	// startGame();
 
 });
