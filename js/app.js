@@ -24,8 +24,7 @@ const cardSymbols = ["diamond",
 let deck = document.querySelector(".deck");
 let cards = document.querySelector(".deck").children;
 let openCards = []; //Hold open Cards
-
-const numberOfMoves = document.querySelector(".moves");
+let clickedCards=[];//To count the moves
 // numberOfMoves.textContent='0';
 /*
  * Display the cards on the page
@@ -35,6 +34,7 @@ const numberOfMoves = document.querySelector(".moves");
  */
 
 
+const numberOfMoves = document.querySelector(".moves");
 startGame();
 
 
@@ -105,8 +105,12 @@ for (let card of deckOfcards) {
 			openCards.push(card);
 			card.classList.add('open', 'show');
 			console.log(openCards.length);
+			clickedCards.push(card);
+			numberOfMoves.textContent=clickedCards.length;
+				
 			if (openCards.length == 2) {
 				//hide
+				
 				if (openCards[0].dataset.card === openCards[1].dataset.card) {
 					openCards[0].classList.add('open', 'show', 'match');
 					openCards[1].classList.add('open', 'show', 'match');
@@ -117,13 +121,13 @@ for (let card of deckOfcards) {
 					// console.log(openCards[1].dataset.card);
 					openCards = [];
 				} else {
-
+				
 					setTimeout(function () {
 						openCards.forEach(function (card) {
 							card.classList.remove('open', 'show');
 						});
 						openCards = [];
-					}, 900);
+					}, 1000);
 
 				}
 
@@ -131,11 +135,6 @@ for (let card of deckOfcards) {
 
 
 		}
-
-		// else{
-		// // openCards.push(card);
-		// this.classList.add('open', 'show');
-		// // return flippedCard;
 
 
 		// matchedCards();
@@ -164,6 +163,9 @@ for (let card of deckOfcards) {
 /*
 	Counting Moves Function
 */
+
+
+// openCards
 
 
 /*
