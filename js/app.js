@@ -26,12 +26,13 @@ let deck = document.querySelector(".deck");
 let cards = document.querySelector(".deck").children;
 let numberOfMoves = document.querySelector(".moves");
 let reset = document.querySelector(".restart");
-
+let start = document.querySelectorAll(".fa-star");
 /*Variables*/
 let moves = 0;
 
 /*Arrays*/
 let openCards = []; // Array to hold open Cards
+// let starts=[...start];
 
 /*Initialize the game*/
 startGame();
@@ -39,9 +40,11 @@ startGame();
 function startGame() {
 	numberOfMoves.textContent = '0';
 	moves = 0;
+	resetStarts();
 	shuffle(cardSymbols);
 	AddCardSymbols();
 	flipCards();
+
 }
 
 /*
@@ -82,18 +85,15 @@ function AddCardSymbols() {
 	}
 	deck.innerHTML = cardContent;
 }
-/*
- * set up the event listener for a card. If a card is clicked:
- 
- /*  - display the card's symbol (put this functionality in another function that you call from this one)
+
+
+/*  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
+ 
+ 
 
 /*Get all the cards from the deck*/
 
@@ -101,70 +101,100 @@ function AddCardSymbols() {
 // /*Flip Cards Function & check if they are a match
 function flipCards() {
 	//Spread Operator
+
 	let deckOfcards = [...cards]; //Contains list of card Symbols
 	for (let card of deckOfcards) {
-		card.addEventListener('click', function (e) {
+		card.addEventListener('click', function () {
 			if (!card.classList.contains('open', 'show')) {
 				openCards.push(card);
-				card.classList.add('open', 'show');
+				card.classList.add('open', 'show', 'animated', 'flipInX');
 				matchedCards();
 			}
+
 		});
 	}
 }
 
-
-function updateNumberofMoves() {
-	numberOfMoves.textContent = moves;
-}
-
+/*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match*/
 
 function matchedCards() {
 
-
-	if (openCards.length == 2) {
+	numberofMoves();
+	if (openCards.length === 2) {
 
 		if (openCards[0].dataset.card === openCards[1].dataset.card) {
-			openCards[0].classList.add('match');
-			openCards[1].classList.add('match');
-			openCards[0].classList.remove('open', 'show');
-			openCards[1].classList.remove('open', 'show');
+			openCards[0].classList.add('match', 'animated', 'pulse');
+			openCards[1].classList.add('match', 'animated', 'pulse');
+			openCards[0].classList.remove('open', 'show', 'flipInX');
+			openCards[1].classList.remove('open', 'show', 'flipInX');
 			//Prevent user from clicking the matched cards
 			openCards[0].style.pointerEvents = 'none';
 			openCards[1].style.pointerEvents = 'none';
-			openCards = [];
+			openCards = []; //Empty array
 			allMatchedCards();
+
 
 		} else {
 			unmatchedCards();
-			moves++; //Counting moves
-			updateNumberofMoves();
+
 		}
+
 
 	}
 
 
 }
 
+
+/*+ increment the move counter and display it on the page (put this functionality in another function that you call from this one)*/
+function numberofMoves() {
+	moves++;
+	numberOfMoves.textContent = moves;
+	startRating();
+
+}
+
+
 function unmatchedCards() {
 	//Mike Wales FEND P3: Memory Game with Mike Wales
-
-	openCards[0].classList.add('unmatch');
-	openCards[1].classList.add('unmatch');
-	setTimeout(function () {
+	openCards[0].classList.remove('animated', 'flipInX');
+	openCards[1].classList.remove('animated', 'flipInX');
+	openCards[0].classList.add('unmatch', 'animated', 'shake');
+	openCards[1].classList.add('unmatch', 'animated', 'shake');
+	setTimeout(() => {
 		openCards.forEach(function (card) {
 			// card.classList.add('unmatch');
-			card.classList.remove('open', 'show', 'unmatch');
+			card.classList.remove('open', 'show', 'unmatch', 'animated', 'flipInX', 'shake');
 
 		});
 		openCards = [];
 
 	}, 1000);
-	// card.classList.remove('unmatch');
+}
+
+/*Start Rating function*/
+function startRating() {
+	// NumberofMoves();
+
+
+	console.log(moves);
+	if (moves > 16) {
+		start[2].style.visibility = "hidden";
+	}
+	if (moves >= 35) {
+		start[1].style.visibility = "hidden";
+
+	}
+
 
 }
 
-/*Match two cards(Verify if the two cards that were pushed into openCards Array are a match*/
+function resetStarts() {
+	start[2].style.visibility = "visible";
+	start[1].style.visibility = "visible";
+}
+
 
 function allMatchedCards() {
 	let matchCard = deck.getElementsByClassName("match");
@@ -203,11 +233,7 @@ function allMatchedCards() {
 
 
 /*
-	Reset Function
+	Reset Function( fix this)
 */
 
-
-reset.addEventListener('click', function (e) {
-	startGame();
-
-});
+reset.addEventListener('click', startGame);
