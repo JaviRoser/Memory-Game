@@ -26,24 +26,26 @@ let deck = document.querySelector(".deck");
 let cards = document.querySelector(".deck").children;
 let numberOfMoves = document.querySelector(".moves");
 let reset = document.querySelector(".restart");
-let start = document.querySelectorAll(".fa-star");
+let star = document.querySelectorAll(".fa-star")
 /*Variables*/
 let moves = 0;
 
 /*Arrays*/
 let openCards = []; // Array to hold open Cards
-// let starts=[...start];
+let stars = [...star];
 
 /*Initialize the game*/
 startGame();
 
 function startGame() {
 	numberOfMoves.textContent = '0';
+
 	moves = 0;
-	resetStarts();
+	resetStars();
 	shuffle(cardSymbols);
 	AddCardSymbols();
 	flipCards();
+	// starRating();
 
 }
 
@@ -105,9 +107,9 @@ function flipCards() {
 	let deckOfcards = [...cards]; //Contains list of card Symbols
 	for (let card of deckOfcards) {
 		card.addEventListener('click', function () {
-			if (!card.classList.contains('open', 'show')) {
+			if (!card.classList.contains('show')) {
 				openCards.push(card);
-				card.classList.add('open', 'show', 'animated', 'flipInX');
+				card.classList.add('show', 'animated', 'flipInX');
 				matchedCards();
 			}
 
@@ -124,10 +126,11 @@ function matchedCards() {
 	if (openCards.length === 2) {
 
 		if (openCards[0].dataset.card === openCards[1].dataset.card) {
+
 			openCards[0].classList.add('match', 'animated', 'pulse');
 			openCards[1].classList.add('match', 'animated', 'pulse');
-			openCards[0].classList.remove('open', 'show', 'flipInX');
-			openCards[1].classList.remove('open', 'show', 'flipInX');
+			openCards[0].classList.remove('show', 'flipInX');
+			openCards[1].classList.remove('show', 'flipInX');
 			//Prevent user from clicking the matched cards
 			openCards[0].style.pointerEvents = 'none';
 			openCards[1].style.pointerEvents = 'none';
@@ -151,7 +154,7 @@ function matchedCards() {
 function numberofMoves() {
 	moves++;
 	numberOfMoves.textContent = moves;
-	startRating();
+	starRating();
 
 }
 
@@ -165,7 +168,7 @@ function unmatchedCards() {
 	setTimeout(() => {
 		openCards.forEach(function (card) {
 			// card.classList.add('unmatch');
-			card.classList.remove('open', 'show', 'unmatch', 'animated', 'flipInX', 'shake');
+			card.classList.remove('show', 'unmatch', 'animated', 'flipInX', 'shake');
 
 		});
 		openCards = [];
@@ -174,25 +177,28 @@ function unmatchedCards() {
 }
 
 /*Start Rating function*/
-function startRating() {
+function starRating() {
 	// NumberofMoves();
 
 
 	console.log(moves);
 	if (moves > 16) {
-		start[2].style.visibility = "hidden";
+		star[2].style.visibility = "hidden";
+
+		stars.splice(2, 1);
 	}
 	if (moves >= 35) {
-		start[1].style.visibility = "hidden";
+		star[1].style.visibility = "hidden";
 
+		stars.splice(1, 1);
 	}
-
+	console.log("my start lenght is" + stars.length); //show me how many starts have in the array
 
 }
 
-function resetStarts() {
-	start[2].style.visibility = "visible";
-	start[1].style.visibility = "visible";
+function resetStars() {
+	star[2].style.visibility = "visible";
+	star[1].style.visibility = "visible";
 }
 
 
@@ -206,9 +212,24 @@ function allMatchedCards() {
 
 		// Get the <span> element that closes the modal
 		let span = document.getElementsByClassName("close")[0];
-		// let numberOfMovesContent = document.querySelector("numofMoves");
-		// numberOfMovesContent.textContent = moves;
+
+		//Add number of moves to the modal Display
+		let numberOfMovesContent = document.querySelector(".numofMoves");
+		numberOfMovesContent.textContent = "Number of Moves: " + moves;
+
+		//Add number of stars to the modal
+		let rating = document.querySelector(".starRating");
+
+
+		if (stars.length < 2) {
+			rating.textContent = textConten = "You got " + stars.length + " star";
+		} else {
+			rating.textContent = textContent = "You got " + stars.length + " stars";
+		}
+
+
 		modal.style.display = "block";
+
 
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function () {
@@ -220,7 +241,7 @@ function allMatchedCards() {
 		window.onclick = function (event) {
 			if (event.target == modal) {
 				modal.style.display = "none";
-				startGame();
+
 			}
 		}
 

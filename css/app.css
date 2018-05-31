@@ -18,7 +18,7 @@ body {
 
 body {
 	/*background:url("../../img/galaxy.jpg");*/
-	background: black;
+	background-image: linear-gradient(to right, #0acffe 0%, #495aff 100%);
 	/* Background pattern from Subtle Patterns */
 }
 
@@ -33,7 +33,7 @@ h1 {
 	font-family: 'Bungee Inline', cursive;
 	font-weight: 500;
 	letter-spacing: 0.24em;
-	color: #FFD460;
+	color: #00204a;
 	padding: 0.5em 0 0.5em 0;
 }
 
@@ -45,8 +45,7 @@ h1 {
 .deck {
 	width: 660px;
 	min-height: 680px;
-	background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.25) 200%);
-	background-blend-mode: multiply;
+	background-color: #00204a;
 	padding: 32px;
 	border-radius: 10px;
 	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -60,7 +59,7 @@ h1 {
 .deck .card {
 	height: 125px;
 	width: 125px;
-	background: #FCE38A;
+	background-color: #00bbf0;
 	font-size: 0;
 	color: #ffffff;
 	border-radius: 8px;
@@ -70,16 +69,8 @@ h1 {
 	align-items: center;
 }
 
-.deck .card.open {
-	transform: rotateY(0);
-	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
-	background-blend-mode: multiply, multiply;
-	cursor: default;
-}
-
 .deck .card.show {
 	font-size: 35px;
-	/*background:red;*/
 }
 
 .deck .card.match {
@@ -89,7 +80,7 @@ h1 {
 }
 
 .deck .card.unmatch {
-	background-color: #f6416c;
+	background-color: #ff2e63;
 	font-size: 35px;
 }
 
@@ -102,8 +93,9 @@ h1 {
 	text-align: left;
 	width: 345px;
 	margin-bottom: 10px;
-	color: #F6F7D7;
+	color: #00204a;
 	font-weight: 700;
+	font-size: 1.5em;
 }
 
 .score-panel .stars {
@@ -116,8 +108,7 @@ h1 {
 .score-panel .stars li {
 	list-style: none;
 	display: inline-block;
-	color: #f9ed69;
-	font-size: 1.4em;
+	color: ##00204a;
 }
 
 .score-panel .restart {
@@ -138,8 +129,6 @@ h1 {
 	/* Stay in place */
 	z-index: 1;
 	/* Sit on top */
-	padding-top: 100px;
-	/* Location of the box */
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -152,24 +141,20 @@ h1 {
 	/* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4);
 	/* Black w/ opacity */
+	padding-top: 4em;
 }
 
 
 /* Modal Content/Box */
 
 .modal-content {
-	position: relative;
 	background-color: #fefefe;
-	margin: auto;
-	padding: 1.5em;
+	margin: 15% auto;
+	/* 15% from the top and centered */
+	padding: 20px;
 	border: 1px solid #888;
 	width: 40%;
-	height: 200px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.4s;
-	animation-name: animatetop;
-	animation-duration: 0.4s
+	/* Could be more or less, depending on screen size */
 }
 
 
@@ -177,7 +162,7 @@ h1 {
 
 @-webkit-keyframes animatetop {
 	from {
-		top: -300px;
+		top: -500px;
 		opacity: 0
 	}
 	to {
@@ -212,4 +197,11 @@ h1 {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+.starRating,
+.numofMoves {
+	font-size: 1.5em;
+	color: #00204a;
+	font-weight: 500;
 }
