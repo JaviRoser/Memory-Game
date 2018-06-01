@@ -28,7 +28,7 @@ let numberOfMoves = document.querySelector(".moves");
 let reset = document.querySelector(".restart");
 let star = document.querySelectorAll(".fa-star")
 /*Variables*/
-let moves = 0;
+let moves;
 
 /*Arrays*/
 let openCards = []; // Array to hold open Cards
@@ -37,17 +37,20 @@ let stars = [...star];
 /*Initialize the game*/
 startGame();
 
-function startGame() {
-	numberOfMoves.textContent = '0';
 
+function startGame() {
+	// stopTimer();
 	moves = 0;
+	numberOfMoves.textContent = '0';
 	resetStars();
 	shuffle(cardSymbols);
 	AddCardSymbols();
 	flipCards();
-	// starRating();
+	openCards = [];
+
 
 }
+
 
 /*
  * Display the cards on the page
@@ -103,12 +106,14 @@ function AddCardSymbols() {
 // /*Flip Cards Function & check if they are a match
 function flipCards() {
 	//Spread Operator
-
 	let deckOfcards = [...cards]; //Contains list of card Symbols
 	for (let card of deckOfcards) {
 		card.addEventListener('click', function () {
+			startTimer();
+
 			if (!card.classList.contains('show')) {
 				openCards.push(card);
+
 				card.classList.add('show', 'animated', 'flipInX');
 				matchedCards();
 			}
@@ -123,6 +128,7 @@ function flipCards() {
 function matchedCards() {
 
 	numberofMoves();
+
 	if (openCards.length === 2) {
 
 		if (openCards[0].dataset.card === openCards[1].dataset.card) {
@@ -152,6 +158,7 @@ function matchedCards() {
 
 /*+ increment the move counter and display it on the page (put this functionality in another function that you call from this one)*/
 function numberofMoves() {
+
 	moves++;
 	numberOfMoves.textContent = moves;
 	starRating();
@@ -249,6 +256,41 @@ function allMatchedCards() {
 	}
 }
 
+let timer = document.querySelector(".timer");
+// function to start the timer
+let second = 0;
+
+function startTimer() {
+
+	const currentTimer = setInterval(() => {
+
+
+		let hour = Math.floor(second / 3600);
+		let min = Math.floor((second - hour * 3600) / 60);
+		let seconds = second - (hour * 3600 + min * 60);
+		++second;
+		if (seconds < 10) {
+
+			timer.innerHTML = '0' + min + ":" + '0' + seconds;
+		} else {
+			timer.innerHTML = '0' + min + ":" + seconds;
+		}
+
+		if (min > 9) {
+			timer.innerHTML = min + ":" + seconds;
+		}
+
+		console.log(timer);
+
+	}, 500);
+}
+
+// function to stop the timer
+function stopTimer() {
+	clearInterval(currentTimer);
+	timer.innerHTML = '00:00';
+}
+
 
 // *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 
@@ -257,4 +299,10 @@ function allMatchedCards() {
 	Reset Function( fix this)
 */
 
-reset.addEventListener('click', startGame);
+reset.addEventListener('click', () => {
+		startGame();
+		stopTimer();
+
+	}
+
+);

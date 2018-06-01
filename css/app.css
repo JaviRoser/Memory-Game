@@ -108,12 +108,18 @@ h1 {
 .score-panel .stars li {
 	list-style: none;
 	display: inline-block;
-	color: ##00204a;
+	color: white;
 }
 
 .score-panel .restart {
 	float: right;
 	cursor: pointer;
+}
+
+.score-panel .timer {
+	text-align: center;
+	color: white;
+	font-size: 1.5em;
 }
 
 
