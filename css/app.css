@@ -35,8 +35,8 @@ h1 {
 	letter-spacing: 0.24em;
 	color: #00204a;
 	padding: 0.5em 0 0.5em 0;
-	font-size:2em !important;
-	text-align:center;
+	font-size: 2em !important;
+	text-align: center;
 }
 
 
@@ -45,7 +45,7 @@ h1 {
  */
 
 .deck {
-	width:440px;
+	width: 440px;
 	min-height: 410px;
 	background-color: #00204a;
 	padding: 28px;
@@ -79,8 +79,7 @@ h1 {
 	cursor: default;
 	background-color: transparent;
 	font-size: 35px;
-	font-weight:900;
-	
+	font-weight: 900;
 }
 
 .deck .card.unmatch {
@@ -100,8 +99,8 @@ h1 {
 	color: #00204a;
 	font-weight: 700;
 	font-size: 1em;
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 
 .score-panel .stars {
@@ -126,10 +125,9 @@ h1 {
 	text-align: center;
 	color: white;
 	font-size: 2.5em;
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
-
 
 
 /*Congratulations Popup*/
@@ -156,8 +154,6 @@ h1 {
 	/* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4);
 	/* Black w/ opacity */
-
-	
 }
 
 
@@ -170,7 +166,7 @@ h1 {
 	padding: 20px;
 	border: 1px solid #888;
 	width: 40%;
-	opacity:0.9;
+	opacity: 0.9;
 	/* Could be more or less, depending on screen size */
 }
 
@@ -216,7 +212,9 @@ h1 {
 	cursor: pointer;
 }
 
+
 /*Modal Content*/
+
 .starRating,
 .numofMoves,
 .yourTime {
@@ -225,41 +223,29 @@ h1 {
 	font-weight: 500;
 }
 
+
 /*Play Again button*/
 
 .button {
-    background-color: #00204a; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-	font-size:0.9em;
-	font-weight:600;
+	background-color: #00204a;
+	/* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s;
+	/* Safari */
+	transition-duration: 0.4s;
+	font-size: 0.9em;
+	font-weight: 600;
 	font-family: 'Press Start 2P', cursive;
 }
 
 .button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
