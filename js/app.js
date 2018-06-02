@@ -30,10 +30,10 @@ let star = document.querySelectorAll(".fa-star")
 
 /*Modal Selectors*/
 
-	// let modal = document.getElementById('congratulations');
-		// let numberOfMovesContent = document.querySelector(".numofMoves");
-		// let yourTime=document.querySelector(".yourTime");		
-		// let rating = document.querySelector(".starRating");
+	let modal = document.getElementById('congratulations');
+		let numberOfMovesContent = document.querySelector(".numofMoves");
+		let yourTime=document.querySelector(".yourTime");		
+		let rating = document.querySelector(".starRating");
 
 
 
@@ -209,14 +209,14 @@ function allMatchedCards() {
 		/*Courtesy of W3School*/
 		stopTimer();
 		
-		let modal = document.getElementById('congratulations');
-		let numberOfMovesContent = document.querySelector(".numofMoves");
-		let yourTime=document.querySelector(".yourTime");		
-		let rating = document.querySelector(".starRating");
+		// let modal = document.getElementById('congratulations');
+		// let numberOfMovesContent = document.querySelector(".numofMoves");
+		// let yourTime=document.querySelector(".yourTime");		
+		// let rating = document.querySelector(".starRating");
 
 		// Get the <span> element that closes the modal
 		let span = document.getElementsByClassName("close")[0];
-
+		let button=document.querySelector(".playAgain");
 		//Add number of moves to the modal Display
 	
 		numberOfMovesContent.textContent = "Number of Moves: " + moves;
@@ -245,13 +245,17 @@ function allMatchedCards() {
 		window.onclick = function (event) {
 			if (event.target == modal) {
 				modal.style.display = "none";
+				resetTimer();
 
 			}
 		}
 
 		//play again button
-			button.onclick = function (event) {
+			button.onclick = function () {
 			startGame();
+			resetTimer();
+				modal.style.display = "none";
+		
 		}
 
 	}
@@ -308,17 +312,7 @@ reset.addEventListener('click', () => {
 	}
 )}
 
-/*
-	Play Again Button
-*/
-let button=document.querySelector(".playAgain");
-button.addEventListener('click', () => {
-		resetGame();
-		modal.style.display = "none";
-		resetTimer();
-		
-	}
-);
+
 
 
 
