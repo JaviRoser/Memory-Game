@@ -23,7 +23,18 @@ The game progress is tracked in the score panel by looking at the numbers of sta
 
 ## Game Layout
 
-  **Score Panel** : Star Rating, Move Counter, Timer, and Restart Button.
+  **Score Panel** : Star Rating, Move Counter, Restart Button, and Timer.
+
+
+![memorygame](https://user-images.githubusercontent.com/25829140/40877892-01c4a26e-6656-11e8-9f6a-9d6a9cd028a2.jpg)
+
+
+## External Libraries and Toolkit
+* Google Fonts 
+* Font Awesome
+* Bootstrap
+* Animate.css
+
 
 
 
