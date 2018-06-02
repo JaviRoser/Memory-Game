@@ -304,13 +304,13 @@ function stopTimer() {
 /*
 	Reset Function
 */
-function resetGame(){
+
 reset.addEventListener('click', () => {
 		startGame();
 		resetTimer();
 
 	}
-)}
+)
 
 
 
