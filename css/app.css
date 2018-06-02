@@ -35,6 +35,8 @@ h1 {
 	letter-spacing: 0.24em;
 	color: #00204a;
 	padding: 0.5em 0 0.5em 0;
+	font-size:2em !important;
+	text-align:center;
 }
 
 
@@ -43,26 +45,26 @@ h1 {
  */
 
 .deck {
-	width: 660px;
-	min-height: 680px;
+	width:440px;
+	min-height: 410px;
 	background-color: #00204a;
-	padding: 32px;
+	padding: 28px;
 	border-radius: 10px;
 	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	margin: 0 0 3em;
+	margin: 0 0 2em;
 }
 
 .deck .card {
-	height: 125px;
-	width: 125px;
+	height: 77px;
+	width: 77px;
 	background-color: #00bbf0;
 	font-size: 0;
 	color: #ffffff;
-	border-radius: 8px;
+	border-radius: 10px;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
@@ -75,8 +77,10 @@ h1 {
 
 .deck .card.match {
 	cursor: default;
-	background-color: #00b8a9;
+	background-color: transparent;
 	font-size: 35px;
+	font-weight:900;
+	
 }
 
 .deck .card.unmatch {
@@ -95,7 +99,9 @@ h1 {
 	margin-bottom: 10px;
 	color: #00204a;
 	font-weight: 700;
-	font-size: 1.5em;
+	font-size: 1em;
+	margin:0;
+	padding:0;
 }
 
 .score-panel .stars {
@@ -119,8 +125,11 @@ h1 {
 .score-panel .timer {
 	text-align: center;
 	color: white;
-	font-size: 1.5em;
+	font-size: 2.5em;
+	margin:0;
+	padding:0;
 }
+
 
 
 /*Congratulations Popup*/
@@ -147,7 +156,8 @@ h1 {
 	/* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4);
 	/* Black w/ opacity */
-	padding-top: 4em;
+
+	
 }
 
 
@@ -160,6 +170,7 @@ h1 {
 	padding: 20px;
 	border: 1px solid #888;
 	width: 40%;
+	opacity:0.9;
 	/* Could be more or less, depending on screen size */
 }
 
@@ -168,7 +179,7 @@ h1 {
 
 @-webkit-keyframes animatetop {
 	from {
-		top: -500px;
+		top: -200px;
 		opacity: 0
 	}
 	to {
@@ -179,7 +190,7 @@ h1 {
 
 @keyframes animatetop {
 	from {
-		top: -300px;
+		top: -200px;
 		opacity: 0
 	}
 	to {
@@ -205,9 +216,50 @@ h1 {
 	cursor: pointer;
 }
 
+/*Modal Content*/
 .starRating,
-.numofMoves {
-	font-size: 1.5em;
+.numofMoves,
+.yourTime {
+	font-size: 2em;
 	color: #00204a;
 	font-weight: 500;
 }
+
+/*Play Again button*/
+
+.button {
+    background-color: #00204a; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	font-size:0.9em;
+	font-weight:600;
+	font-family: 'Press Start 2P', cursive;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
