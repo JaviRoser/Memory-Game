@@ -48,7 +48,9 @@ let currentTimer = 0;
 let openCards = []; // Array to hold open Cards
 let stars = [...star]; //Hold rating stars
 
-/*Initialize the game*/
+/*
+	Initialize the game
+*/
 
 startGame();
 
@@ -110,7 +112,6 @@ function AddCardSymbols() {
  
  
 
-/*Get all the cards from the deck*/
 
 
 /*	-Flip Cards Function & check if they are a match
@@ -158,7 +159,9 @@ function matchedCards() {
 
 }
 
-/* if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)*/
+/* 
+	if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+*/
 
 function unmatchedCards() {
 
@@ -176,7 +179,10 @@ function unmatchedCards() {
 }
 
 
-/*+ increment the move counter and display it on the page (put this functionality in another function that you call from this one)*/
+/*
+	Increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+*/
+
 function numberofMoves() {
 	moves++;
 	numberOfMoves.textContent = moves;
@@ -188,7 +194,9 @@ function numberofMoves() {
 }
 
 
-/*Start Rating function*/
+/*
+	Start Rating function
+*/
 function starRating() {
 	if (moves > 26) {
 		star[2].style.visibility = "hidden";
@@ -207,6 +215,10 @@ function resetStars() {
 }
 
 
+/*
+	allMatchedCards function: Check if all the cards have
+	been matched 
+*/
 function allMatchedCards() {
 	let matchCard = deck.getElementsByClassName("match");
 
@@ -251,7 +263,7 @@ function allMatchedCards() {
 			}
 		}
 
-		//play again button
+		// 	Play again button
 		button.onclick = function () {
 			startGame();
 			resetTimer();
@@ -264,7 +276,7 @@ function allMatchedCards() {
 
 
 /* 
-	Timer
+	Start Timer Function: Initialize the timer
 */
 
 function startTimer() {
@@ -272,6 +284,8 @@ function startTimer() {
 	let min = Math.floor((second - hour * 3600) / 60);
 	let seconds = second - (hour * 3600 + min * 60);
 	++second;
+	//	Change the Timer format after 10 seconds
+
 	if (seconds < 10) {
 
 		timer.innerHTML = '0' + min + ":" + '0' + seconds;
@@ -288,7 +302,6 @@ function startTimer() {
 /*
 	Reset Timer
 */
-
 
 function resetTimer() {
 	clearInterval(currentTimer);

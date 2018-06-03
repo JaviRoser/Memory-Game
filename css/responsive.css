@@ -1,33 +1,22 @@
 @media screen and (max-width: 450px) {
-	
-	h1{
-	font-size:1.5em !Important;
-	text-align:center;
-	padding:2em 0 1em 0;
-		
+	h1 {
+		font-size: 1.5em !Important;
+		text-align: center;
+		padding: 2em 0 1em 0;
 	}
 	.deck {
-	width: 340px;
-	min-height: 340px;
-	padding: 10px;
-	border-radius: 10px;
-}
-
-.deck .card {
-	height: 65px;
-	width: 65px;
-	font-size: 0;
-
-}
-
-.modal-content {
-
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-	
-	
-	
-	
-	
-	
+		width: 340px;
+		min-height: 340px;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	.deck .card {
+		height: 65px;
+		width: 65px;
+		font-size: 0;
+	}
+	.modal-content {
+		width: 80%;
+		/* Could be more or less, depending on screen size */
+	}
 }
