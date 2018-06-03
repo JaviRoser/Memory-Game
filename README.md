@@ -35,6 +35,13 @@ The game progress is tracked in the score panel by looking at the numbers of sta
 * Bootstrap
 * Animate.css
 
+## Future Functionality
+
+* Implement a leaderboard
+* Store game state using local storage
+* Keyboard shortcuts
+
+
 
 
 
