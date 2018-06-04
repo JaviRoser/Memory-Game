@@ -3,50 +3,45 @@
  */
 
 
-const cardSymbols = ["diamond",
+let cardSymbols = ["diamond",
 	"paper-plane-o",
 	"anchor",
 	"bolt",
+	"bicycle",
 	"cube",
 	"leaf",
-	"bicycle",
-	"bomb",
-	"diamond",
-	"paper-plane-o",
-	"anchor",
-	"bolt",
-	"cube",
-	"leaf",
-	"bicycle",
 	"bomb"
 ];
 
+cardSymbols = [...cardSymbols, ...cardSymbols];
+
+
 /*Selectors*/
-let deck = document.querySelector(".deck");
-let cards = document.querySelector(".deck").children;
-let numberOfMoves = document.querySelector(".moves");
-let reset = document.querySelector(".restart");
-let star = document.querySelectorAll(".fa-star")
+let deck = document.querySelector(".deck"),
+	cards = document.querySelector(".deck").children,
+	numberOfMoves = document.querySelector(".moves"),
+	reset = document.querySelector(".restart"),
+	star = document.querySelectorAll(".fa-star");
 
 /*
 	Modal Selectors
 	Popup Modal (Number of moves && time to win the game)
 */
-let modal = document.getElementById('congratulations');
-let numberOfMovesContent = document.querySelector(".numofMoves");
-let yourTime = document.querySelector(".yourTime");
-let rating = document.querySelector(".starRating");
-let timer = document.querySelector(".timer");
+let modal = document.getElementById('congratulations'),
+	numberOfMovesContent = document.querySelector(".numofMoves"),
+	yourTime = document.querySelector(".yourTime"),
+	rating = document.querySelector(".starRating"),
+	timer = document.querySelector(".timer");
 
 
 /*Variables*/
-let moves;
-let second = 0;
-let currentTimer = 0;
+let moves,
+	second = 0,
+	currentTimer = 0;
 
 /*Arrays*/
-let openCards = []; // Array to hold open Cards
-let stars = [...star]; //Hold rating stars
+let openCards = [], // Array to hold open Cards
+	stars = [...star]; //Hold rating stars
 
 /*
 	Initialize the game
@@ -126,10 +121,20 @@ function flipCards() {
 		card.addEventListener('click', () => {
 			if (!card.classList.contains('show')) {
 				openCards.push(card);
-				card.classList.add('show', 'animated', 'flipInX');
-				matchedCards();
-				numberofMoves();
+				if (openCards.length <= 2) {
+					card.classList.add('show', 'animated', 'flipInX');
+					matchedCards();
+					numberofMoves();
+					//	Prevent user from clicking more than 2 cards
+				} else {
+					card.classList.remove('show', 'animated', 'flipInX');
+
+
+				}
+
 			}
+
+
 		});
 	}
 
@@ -145,17 +150,21 @@ function matchedCards() {
 			openCards[1].classList.add('match', 'animated', 'pulse');
 			openCards[0].classList.remove('show', 'flipInX');
 			openCards[1].classList.remove('show', 'flipInX');
-			//Prevent user from clicking the matched cards
+
+			//Prevent user from clicking the two matched cards
 			openCards[0].style.pointerEvents = 'none';
 			openCards[1].style.pointerEvents = 'none';
+
 			openCards = []; //Empty array
 
-			allMatchedCards(); //If the user gets the 16 symbols rigth call this function
+			allMatchedCards(); //If the user match the 16 symbols call this function
 
 		} else {
 			unmatchedCards();
 		}
+
 	}
+
 
 }
 
@@ -186,9 +195,7 @@ function unmatchedCards() {
 function numberofMoves() {
 	moves++;
 	numberOfMoves.textContent = moves;
-	if (moves === 1) {
-		currentTimer = setInterval(startTimer, 500);
-	}
+	moves === 1 && (currentTimer = setInterval(startTimer, 500));
 
 	starRating();
 }
@@ -198,20 +205,23 @@ function numberofMoves() {
 	Start Rating function
 */
 function starRating() {
-	if (moves > 26) {
-		star[2].style.visibility = "hidden";
-		stars.splice(2, 1);
-	}
-	if (moves >= 48) {
-		star[1].style.visibility = "hidden";
-		stars.splice(1, 1);
-	}
+
+	//	Reduce Rating to two stars
+	moves > 26 &&
+		(star[2].style.visibility = 'hidden'),
+
+		(stars.splice(2, 1));
+	//	Reduce Rating to one star
+	moves >= 48 &&
+		(star[1].style.visibility = 'hidden'),
+		(stars.splice(1, 1));
+
 
 }
 
 function resetStars() {
-	star[2].style.visibility = "visible";
-	star[1].style.visibility = "visible";
+	star[2].style.visibility = 'visible';
+	star[1].style.visibility = 'visible';
 }
 
 
@@ -232,32 +242,31 @@ function allMatchedCards() {
 		let button = document.querySelector(".playAgain");
 
 		//	Add number of moves to the modal display
-		numberOfMovesContent.textContent = "Number of Moves: " + (moves + 1);
+		numberOfMovesContent.textContent = 'Number of Moves: ' + (moves + 1);
 
 		//	Add time to the modal display
-		yourTime.textContent = "Time: " + timer.innerHTML;
+		yourTime.textContent = 'Time: ' + timer.innerHTML;
 
 		//	Add number of stars to the modal
 		if (stars.length < 2) {
 
-			rating.textContent = "You earned " + stars.length + " star";
+			rating.textContent = 'You earned ' + stars.length + ' star';
 		} else {
-			rating.textContent = "You earned " + stars.length + " stars";
+			rating.textContent = 'You earned ' + stars.length + ' stars';
 		}
-
-		modal.style.display = "block";
+		modal.style.display = 'block';
 
 
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function () {
-			modal.style.display = "none";
+			modal.style.display = 'none';
 
 		}
 
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function (event) {
 			if (event.target == modal) {
-				modal.style.display = "none";
+				modal.style.display = 'none';
 				resetTimer();
 
 			}
@@ -267,7 +276,7 @@ function allMatchedCards() {
 		button.onclick = function () {
 			startGame();
 			resetTimer();
-			modal.style.display = "none";
+			modal.style.display = 'none';
 
 		}
 
@@ -288,13 +297,13 @@ function startTimer() {
 
 	if (seconds < 10) {
 
-		timer.innerHTML = '0' + min + ":" + '0' + seconds;
+		timer.innerHTML = `0${min}:0${seconds}`;
 	} else {
-		timer.innerHTML = '0' + min + ":" + seconds;
+		timer.innerHTML = `0${min}:${seconds}`;
 	}
 
 	if (min > 9) {
-		timer.innerHTML = min + ":" + seconds;
+		timer.innerHTML = `${min}:${seconds}`;
 	}
 }
 
