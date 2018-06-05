@@ -1,3 +1,18 @@
+@media screen and (max-width: 768px) {
+	/*Modal Content*/
+	.starRating,
+	.numofMoves,
+	.yourTime {
+		font-size: 1.5em;
+		color: #00204a;
+		font-weight: 500;
+	}
+	.modal-content {
+		width: 50%;
+		/* Could be more or less, depending on screen size */
+	}
+}
+
 @media screen and (max-width: 450px) {
 	h1 {
 		font-size: 1.5em !Important;
@@ -13,10 +28,50 @@
 	.deck .card {
 		height: 65px;
 		width: 65px;
-		font-size: 0;
 	}
 	.modal-content {
 		width: 80%;
 		/* Could be more or less, depending on screen size */
+	}
+	/*Modal Content*/
+	.starRating,
+	.numofMoves,
+	.yourTime {
+		font-size: 1em;
+		color: #00204a;
+		font-weight: 500;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	h1 {
+		font-size: 1.1em !Important;
+		text-align: center;
+		padding: 2em 0 1em 0;
+	}
+	.deck {
+		width: 310px;
+		min-height: 310px;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	.deck .card {
+		height: 60px;
+		width: 60px;
+	}
+	.score-panel .timer {
+		font-size: 1.5em;
+	}
+	.modal-content {
+		width: 80%;
+		/* Could be more or less, depending on screen size */
+	}
+	/*Modal Content*/
+	.starRating,
+	.numofMoves,
+	.yourTime {
+		font-size: 1em !Important;
+		color: #00204a;
+		font-weight: 500;
 	}
 }
