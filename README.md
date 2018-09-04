@@ -1,4 +1,4 @@
-# Memory Game Project
+# Udacity Project #2: Memory Game Project
 
 This project was developed using **HTML, CSS, and JavaScript**. 
 It is a game that randomly shuffles card’s symbols, and the game is over once all the pairs are matched.
