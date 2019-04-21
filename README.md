@@ -7,7 +7,7 @@ The game progress is tracked in the score panel by looking at the numbers of sta
 
 ## Game Instructions
 
-* Test the game: https://javiroser.github.io/Memory-Game/
+* Test the game: https://javiroser.github.io/Udacity-MemoryGame/
 * The game board has sixteen cards that are arranged randomly in a grid.
 * To start playing, click on the tiles to turn them over and see the hidden symbol.
 * Once the first card is clicked, the timer starts.
